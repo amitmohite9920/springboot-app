@@ -1,4 +1,3 @@
-```java
 package com.example.demo;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,475 +6,262 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    @GetMapping("/")
-    public String home() {
-        return """
-                <!DOCTYPE html>
-                <html lang="en">
+```
+@GetMapping("/")
+public String home() {
+    return """
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Spring Boot DevOps</title>
 
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <style>
+                    * {
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                    }
 
-                    <title>DevOps Deployment Dashboard</title>
+                    body {
+                        font-family: Arial, Helvetica, sans-serif;
+                        min-height: 100vh;
+                        background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 30px;
+                    }
 
-                    <style>
+                    .container {
+                        width: 100%;
+                        max-width: 1000px;
+                        background: rgba(255, 255, 255, 0.12);
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                        backdrop-filter: blur(15px);
+                        border-radius: 25px;
+                        padding: 50px;
+                        text-align: center;
+                        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+                    }
 
-                        * {
-                            box-sizing: border-box;
-                            margin: 0;
-                            padding: 0;
-                        }
+                    .rocket {
+                        font-size: 70px;
+                        margin-bottom: 20px;
+                    }
 
-                        body {
-                            font-family: Arial, Helvetica, sans-serif;
-                            min-height: 100vh;
-                            background:
-                                radial-gradient(circle at top left, #243b55, transparent 40%),
-                                radial-gradient(circle at bottom right, #141e30, transparent 40%),
-                                #0f172a;
-                            color: white;
-                        }
+                    h1 {
+                        font-size: 48px;
+                        margin-bottom: 15px;
+                    }
 
-                        /* Header */
+                    .subtitle {
+                        font-size: 20px;
+                        color: #dbeafe;
+                        margin-bottom: 30px;
+                    }
 
-                        header {
-                            padding: 25px 8%;
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            border-bottom: 1px solid rgba(255,255,255,0.1);
-                            backdrop-filter: blur(10px);
-                        }
+                    .success {
+                        display: inline-block;
+                        padding: 12px 25px;
+                        border-radius: 30px;
+                        background: #16a34a;
+                        font-size: 18px;
+                        font-weight: bold;
+                        margin-bottom: 40px;
+                        box-shadow: 0 8px 20px rgba(22, 163, 74, 0.35);
+                    }
 
-                        .logo {
-                            font-size: 24px;
-                            font-weight: bold;
-                        }
+                    .pipeline {
+                        background: rgba(0, 0, 0, 0.25);
+                        border-radius: 18px;
+                        padding: 30px;
+                        margin-bottom: 35px;
+                    }
 
-                        .logo span {
-                            color: #38bdf8;
-                        }
+                    .pipeline h2 {
+                        margin-bottom: 25px;
+                        font-size: 28px;
+                    }
 
-                        .status {
-                            display: flex;
-                            align-items: center;
-                            gap: 8px;
-                            background: rgba(34,197,94,0.15);
-                            border: 1px solid rgba(34,197,94,0.4);
-                            padding: 8px 15px;
-                            border-radius: 25px;
-                            color: #4ade80;
-                            font-size: 14px;
-                        }
+                    .flow {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 12px;
+                        flex-wrap: wrap;
+                    }
 
-                        .dot {
-                            width: 9px;
-                            height: 9px;
-                            background: #22c55e;
-                            border-radius: 50%;
-                            box-shadow: 0 0 10px #22c55e;
-                        }
+                    .step {
+                        background: white;
+                        color: #1e293b;
+                        padding: 14px 20px;
+                        border-radius: 12px;
+                        font-weight: bold;
+                        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+                    }
 
-                        /* Hero */
+                    .arrow {
+                        font-size: 25px;
+                        font-weight: bold;
+                    }
 
-                        .hero {
-                            text-align: center;
-                            padding: 80px 20px 50px;
-                        }
+                    .cards {
+                        display: grid;
+                        grid-template-columns: repeat(4, 1fr);
+                        gap: 18px;
+                    }
 
-                        .hero h1 {
-                            font-size: 52px;
-                            margin-bottom: 20px;
-                            background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
-                            -webkit-background-clip: text;
-                            -webkit-text-fill-color: transparent;
-                        }
+                    .card {
+                        background: rgba(255, 255, 255, 0.1);
+                        border: 1px solid rgba(255, 255, 255, 0.15);
+                        border-radius: 16px;
+                        padding: 25px 15px;
+                        transition: transform 0.3s;
+                    }
 
-                        .hero p {
-                            color: #cbd5e1;
-                            font-size: 19px;
-                            max-width: 700px;
-                            margin: auto;
-                            line-height: 1.7;
-                        }
+                    .card:hover {
+                        transform: translateY(-8px);
+                        background: rgba(255, 255, 255, 0.18);
+                    }
 
-                        /* Main container */
+                    .icon {
+                        font-size: 40px;
+                        margin-bottom: 12px;
+                    }
 
+                    .card h3 {
+                        margin-bottom: 8px;
+                    }
+
+                    .card p {
+                        color: #dbeafe;
+                        font-size: 14px;
+                    }
+
+                    .footer {
+                        margin-top: 35px;
+                        color: #bfdbfe;
+                        font-size: 14px;
+                    }
+
+                    @media (max-width: 800px) {
                         .container {
-                            width: 90%;
-                            max-width: 1100px;
-                            margin: auto;
+                            padding: 30px 20px;
                         }
 
-                        /* Deployment card */
-
-                        .deployment {
-                            background: rgba(255,255,255,0.06);
-                            border: 1px solid rgba(255,255,255,0.12);
-                            border-radius: 20px;
-                            padding: 30px;
-                            margin-bottom: 35px;
-                            backdrop-filter: blur(15px);
-                            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-                        }
-
-                        .deployment h2 {
-                            margin-bottom: 25px;
-                            font-size: 25px;
-                        }
-
-                        .pipeline {
-                            display: flex;
-                            align-items: center;
-                            justify-content: space-between;
-                            gap: 10px;
-                            flex-wrap: wrap;
-                        }
-
-                        .step {
-                            flex: 1;
-                            min-width: 120px;
-                            text-align: center;
-                            padding: 18px 10px;
-                            background: rgba(255,255,255,0.06);
-                            border-radius: 15px;
-                            border: 1px solid rgba(255,255,255,0.1);
-                            transition: 0.3s;
-                        }
-
-                        .step:hover {
-                            transform: translateY(-6px);
-                            background: rgba(56,189,248,0.12);
-                            border-color: #38bdf8;
-                        }
-
-                        .step-icon {
-                            font-size: 30px;
-                            margin-bottom: 10px;
-                        }
-
-                        .step-title {
-                            font-weight: bold;
-                            font-size: 14px;
-                        }
-
-                        .arrow {
-                            font-size: 25px;
-                            color: #38bdf8;
-                        }
-
-                        /* Technology cards */
-
-                        .section-title {
-                            text-align: center;
-                            margin: 50px 0 25px;
-                            font-size: 28px;
+                        h1 {
+                            font-size: 34px;
                         }
 
                         .cards {
-                            display: grid;
-                            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                            gap: 20px;
+                            grid-template-columns: repeat(2, 1fr);
+                        }
+                    }
+
+                    @media (max-width: 500px) {
+                        .cards {
+                            grid-template-columns: 1fr;
                         }
 
-                        .card {
-                            padding: 25px;
-                            border-radius: 18px;
-                            background: rgba(255,255,255,0.06);
-                            border: 1px solid rgba(255,255,255,0.1);
-                            transition: 0.3s;
+                        .flow {
+                            flex-direction: column;
                         }
 
-                        .card:hover {
-                            transform: translateY(-8px);
-                            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+                        .arrow {
+                            transform: rotate(90deg);
                         }
+                    }
+                </style>
+            </head>
 
-                        .card-icon {
-                            font-size: 40px;
-                            margin-bottom: 15px;
-                        }
+            <body>
 
-                        .card h3 {
-                            margin-bottom: 8px;
-                        }
+                <div class="container">
 
-                        .card p {
-                            color: #94a3b8;
-                            font-size: 14px;
-                            line-height: 1.5;
-                        }
+                    <div class="rocket">🚀</div>
 
-                        /* Status */
+                    <h1>Spring Boot DevOps</h1>
 
-                        .success-box {
-                            margin-top: 35px;
-                            padding: 25px;
-                            text-align: center;
-                            border-radius: 15px;
-                            background: rgba(34,197,94,0.08);
-                            border: 1px solid rgba(34,197,94,0.3);
-                        }
+                    <p class="subtitle">
+                        Automated CI/CD Deployment Platform
+                    </p>
 
-                        .success-box h2 {
-                            color: #4ade80;
-                            margin-bottom: 10px;
-                        }
+                    <div class="success">
+                        ✓ Application Deployed Successfully
+                    </div>
 
-                        .success-box p {
-                            color: #cbd5e1;
-                        }
+                    <div class="pipeline">
 
-                        /* Footer */
+                        <h2>CI/CD Pipeline</h2>
 
-                        footer {
-                            margin-top: 70px;
-                            padding: 25px;
-                            text-align: center;
-                            border-top: 1px solid rgba(255,255,255,0.1);
-                            color: #64748b;
-                        }
+                        <div class="flow">
 
-                        /* Responsive */
+                            <div class="step">💻 GitHub</div>
+                            <div class="arrow">→</div>
 
-                        @media (max-width: 700px) {
+                            <div class="step">🚀 GoCD</div>
+                            <div class="arrow">→</div>
 
-                            .hero h1 {
-                                font-size: 36px;
-                            }
+                            <div class="step">🐳 Docker</div>
+                            <div class="arrow">→</div>
 
-                            .pipeline {
-                                flex-direction: column;
-                            }
+                            <div class="step">📦 Docker Hub</div>
+                            <div class="arrow">→</div>
 
-                            .arrow {
-                                transform: rotate(90deg);
-                            }
+                            <div class="step">🔄 GitOps</div>
+                            <div class="arrow">→</div>
 
-                            .step {
-                                width: 100%;
-                            }
+                            <div class="step">⚓ ArgoCD</div>
+                            <div class="arrow">→</div>
 
-                        }
-
-                    </style>
-                </head>
-
-                <body>
-
-                    <header>
-
-                        <div class="logo">
-                            DevOps<span>App</span> 🚀
-                        </div>
-
-                        <div class="status">
-                            <div class="dot"></div>
-                            Application Online
-                        </div>
-
-                    </header>
-
-
-                    <section class="hero">
-
-                        <h1>Spring Boot DevOps Dashboard</h1>
-
-                        <p>
-                            A complete CI/CD deployment running through
-                            GoCD, Docker, Docker Hub, GitOps, ArgoCD
-                            and Kubernetes.
-                        </p>
-
-                    </section>
-
-
-                    <div class="container">
-
-
-                        <!-- Deployment Pipeline -->
-
-                        <div class="deployment">
-
-                            <h2>⚡ Deployment Pipeline</h2>
-
-                            <div class="pipeline">
-
-                                <div class="step">
-                                    <div class="step-icon">💻</div>
-                                    <div class="step-title">GitHub</div>
-                                </div>
-
-                                <div class="arrow">→</div>
-
-                                <div class="step">
-                                    <div class="step-icon">🚀</div>
-                                    <div class="step-title">GoCD</div>
-                                </div>
-
-                                <div class="arrow">→</div>
-
-                                <div class="step">
-                                    <div class="step-icon">🐳</div>
-                                    <div class="step-title">Docker</div>
-                                </div>
-
-                                <div class="arrow">→</div>
-
-                                <div class="step">
-                                    <div class="step-icon">📦</div>
-                                    <div class="step-title">Docker Hub</div>
-                                </div>
-
-                                <div class="arrow">→</div>
-
-                                <div class="step">
-                                    <div class="step-icon">🔄</div>
-                                    <div class="step-title">GitOps</div>
-                                </div>
-
-                                <div class="arrow">→</div>
-
-                                <div class="step">
-                                    <div class="step-icon">⚓</div>
-                                    <div class="step-title">ArgoCD</div>
-                                </div>
-
-                                <div class="arrow">→</div>
-
-                                <div class="step">
-                                    <div class="step-icon">☸️</div>
-                                    <div class="step-title">Kubernetes</div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- Technologies -->
-
-                        <h2 class="section-title">
-                            🛠 Technology Stack
-                        </h2>
-
-                        <div class="cards">
-
-                            <div class="card">
-
-                                <div class="card-icon">☕</div>
-
-                                <h3>Spring Boot</h3>
-
-                                <p>
-                                    Java based backend application
-                                    running on port 8080.
-                                </p>
-
-                            </div>
-
-
-                            <div class="card">
-
-                                <div class="card-icon">🐳</div>
-
-                                <h3>Docker</h3>
-
-                                <p>
-                                    Application packaged into a
-                                    portable container image.
-                                </p>
-
-                            </div>
-
-
-                            <div class="card">
-
-                                <div class="card-icon">🚀</div>
-
-                                <h3>GoCD</h3>
-
-                                <p>
-                                    Continuous integration and
-                                    continuous delivery pipeline.
-                                </p>
-
-                            </div>
-
-
-                            <div class="card">
-
-                                <div class="card-icon">⚓</div>
-
-                                <h3>ArgoCD</h3>
-
-                                <p>
-                                    GitOps continuous delivery tool
-                                    managing Kubernetes deployments.
-                                </p>
-
-                            </div>
-
-
-                            <div class="card">
-
-                                <div class="card-icon">☸️</div>
-
-                                <h3>Kubernetes</h3>
-
-                                <p>
-                                    Container orchestration platform
-                                    running the application.
-                                </p>
-
-                            </div>
-
-
-                            <div class="card">
-
-                                <div class="card-icon">📦</div>
-
-                                <h3>Docker Hub</h3>
-
-                                <p>
-                                    Container registry storing
-                                    application images.
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- Success -->
-
-                        <div class="success-box">
-
-                            <h2>✅ Deployment Successful</h2>
-
-                            <p>
-                                Your Spring Boot application is running
-                                successfully on Kubernetes.
-                            </p>
+                            <div class="step">☸ Kubernetes</div>
 
                         </div>
 
                     </div>
 
+                    <div class="cards">
 
-                    <footer>
+                        <div class="card">
+                            <div class="icon">☕</div>
+                            <h3>Spring Boot</h3>
+                            <p>Java application running successfully</p>
+                        </div>
 
-                        Spring Boot DevOps Project •
-                        GoCD • Docker • GitOps • ArgoCD • Kubernetes
+                        <div class="card">
+                            <div class="icon">🐳</div>
+                            <h3>Docker</h3>
+                            <p>Application packaged as a container</p>
+                        </div>
 
-                    </footer>
+                        <div class="card">
+                            <div class="icon">☸️</div>
+                            <h3>Kubernetes</h3>
+                            <p>Application deployed and running in pods</p>
+                        </div>
 
-                </body>
+                        <div class="card">
+                            <div class="icon">🔄</div>
+                            <h3>ArgoCD</h3>
+                            <p>GitOps based continuous deployment</p>
+                        </div>
 
-                </html>
-                """;
-    }
+                    </div>
+
+                    <div class="footer">
+                        Spring Boot → GoCD → Docker → GitHub → ArgoCD → Kubernetes
+                    </div>
+
+                </div>
+
+            </body>
+            </html>
+            """;
 }
 ```
+
+}
 
